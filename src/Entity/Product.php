@@ -5,7 +5,7 @@ namespace App\Entity;
 class Product
 {
     private const FOOD_PRODUCT = 'food';
-    private const AVAILABLE_TYPES = ['food', 'tech','alcohol','other'];
+    public const AVAILABLE_TYPES = ['food', 'tech','alcohol','other'];
 
     /** @var string $name The name of the product */
     private string $name;
