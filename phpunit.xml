@@ -9,7 +9,7 @@
     <!-- Configuration des répertoires de tests-->
     <testsuites>
         <testsuite name="Tests">
-            <directory>tests</directory>
+            <directory>tests/Entity</directory>
         </testsuite>
     </testsuites>
     <!-- Configuration des répertoires de sources-->
