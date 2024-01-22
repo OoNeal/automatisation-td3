@@ -7,10 +7,8 @@ use App\Entity\Product;
 use Faker\Factory as FakerFactory;
 use Faker\Generator;
 
-
 class ProductTest extends TestCase
 {
-
     private Generator $faker;
     private Product $product;
 
