@@ -2,10 +2,10 @@
 
 namespace Tests\Entity;
 
-use PHPUnit\Framework\TestCase;
 use App\Entity\Product;
 use Faker\Factory as FakerFactory;
 use Faker\Generator;
+use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase
 {

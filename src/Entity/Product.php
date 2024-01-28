@@ -5,11 +5,11 @@ namespace App\Entity;
 class Product
 {
     private const FOOD_PRODUCT = 'food';
-    public const AVAILABLE_TYPES = ['food', 'tech','alcohol','other'];
+    public const AVAILABLE_TYPES = ['food', 'tech', 'alcohol', 'other'];
 
     /** @var string $name The name of the product */
     private string $name;
-    /** @var array<string, float> $prices The prices of the product in different currencies*/
+    /** @var array<string, float> $prices The prices of the product in different currencies */
     private array $prices;
     /** @var string $name The type of the product */
     private string $type;
@@ -39,6 +39,16 @@ class Product
     }
 
     /**
+     * Set the name of the product.
+     *
+     * @param string $name The name of the product
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
      * Get the prices of the product in different currencies.
      *
      * @return array<string, float> The prices of the product
@@ -46,6 +56,25 @@ class Product
     public function getPrices(): array
     {
         return $this->prices;
+    }
+
+    /**
+     * Set the prices of the product in different currencies.
+     *
+     * @param array<string, float> $prices The prices of the product
+     */
+    public function setPrices(array $prices): void
+    {
+        foreach ($prices as $currency => $price) {
+            if (!in_array($currency, Wallet::AVAILABLE_CURRENCY)) {
+                continue;
+            }
+
+            if ($price < 0) {
+                continue;
+            }
+            $this->prices[$currency] = $price;
+        }
     }
 
     /**
@@ -71,35 +100,6 @@ class Product
         } else {
             $this->type = $type;
         }
-    }
-
-    /**
-     * Set the prices of the product in different currencies.
-     *
-     * @param array<string, float> $prices The prices of the product
-     */
-    public function setPrices(array $prices): void
-    {
-        foreach ($prices as $currency => $price) {
-            if (!in_array($currency, Wallet::AVAILABLE_CURRENCY)) {
-                continue;
-            }
-
-            if ($price < 0) {
-                continue;
-            }
-            $this->prices[$currency] = $price;
-        }
-    }
-
-    /**
-     * Set the name of the product.
-     *
-     * @param string $name The name of the product
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
     }
 
     /**

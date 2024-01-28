@@ -5,19 +5,17 @@ namespace App\Entity;
 class Wallet
 {
     /**
+     * @var array<string> AVAILABLE_CURRENCY The available currency options.
+     */
+    public const AVAILABLE_CURRENCY = ['USD', 'EUR'];
+    /**
      * @var float $balance The balance of the wallet.
      */
     private float $balance;
-
     /**
      * @var string $currency The currency of the wallet.
      */
     private string $currency;
-
-    /**
-     * @var array<string> AVAILABLE_CURRENCY The available currency options.
-     */
-    public const AVAILABLE_CURRENCY = ['USD', 'EUR'];
 
     /**
      * Constructor for the Wallet class.
@@ -41,16 +39,6 @@ class Wallet
     }
 
     /**
-     * Retrieves the currency of the wallet.
-     *
-     * @return string The currency of the wallet.
-     */
-    public function getCurrency(): string
-    {
-        return $this->currency;
-    }
-
-    /**
      * Sets the balance of the wallet.
      *
      * @param float $balance The new balance for the wallet.
@@ -62,6 +50,16 @@ class Wallet
             throw new \Exception('Invalid balance');
         }
         $this->balance = $balance;
+    }
+
+    /**
+     * Retrieves the currency of the wallet.
+     *
+     * @return string The currency of the wallet.
+     */
+    public function getCurrency(): string
+    {
+        return $this->currency;
     }
 
     /**
