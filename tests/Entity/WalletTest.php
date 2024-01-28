@@ -2,10 +2,10 @@
 
 namespace Tests\Entity;
 
+use App\Entity\Wallet;
 use Faker\Factory as FakerFactory;
 use Faker\Generator;
 use PHPUnit\Framework\TestCase;
-use App\Entity\Wallet;
 
 class WalletTest extends TestCase
 {

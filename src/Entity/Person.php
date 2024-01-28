@@ -4,9 +4,9 @@ namespace App\Entity;
 
 class Person
 {
-    /** @var string $name The name of the person.  */
+    /** @var string $name The name of the person. */
     public string $name;
-    /** @var Wallet $wallet The wallet of the person.  */
+    /** @var Wallet $wallet The wallet of the person. */
     public Wallet $wallet;
 
     /**
@@ -51,6 +51,7 @@ class Person
     {
         return $this->wallet;
     }
+
     /**
      * Creates a new wallet for the person.
      *
@@ -60,6 +61,7 @@ class Person
     {
         $this->wallet = $wallet;
     }
+
     /**
      * Checks if the person has fund in his wallet.
      *
@@ -68,21 +70,6 @@ class Person
     public function hasFund(): bool
     {
         return $this->wallet->getBalance() != 0;
-    }
-    /**
-     * Transfers funds from the person's wallet to another person's wallet.
-     *
-     * @param float $amount The amount of funds to transfer.
-     * @param Person $person The person to transfer funds to.
-     * @throws \Exception If this wallet currency is different from the person's wallet currency.
-     */
-    public function transfertFund(float $amount, Person $person): void
-    {
-        if ($person->wallet->getCurrency() !== $this->wallet->getCurrency()) {
-            throw new \Exception('Can\'t give money with different currencies');
-        }
-        $this->wallet->removeFund($amount);
-        $person->wallet->addFund($amount);
     }
 
     /**
@@ -101,6 +88,23 @@ class Person
             $this->transfertFund($partPerPerson, $persons[$index]);
         }
     }
+
+    /**
+     * Transfers funds from the person's wallet to another person's wallet.
+     *
+     * @param float $amount The amount of funds to transfer.
+     * @param Person $person The person to transfer funds to.
+     * @throws \Exception If this wallet currency is different from the person's wallet currency.
+     */
+    public function transfertFund(float $amount, Person $person): void
+    {
+        if ($person->wallet->getCurrency() !== $this->wallet->getCurrency()) {
+            throw new \Exception('Can\'t give money with different currencies');
+        }
+        $this->wallet->removeFund($amount);
+        $person->wallet->addFund($amount);
+    }
+
     /**
      * Buys a product using the person's wallet.
      *

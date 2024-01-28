@@ -19,13 +19,6 @@ class PersonTest extends TestCase
         $this->faker = FakerFactory::create();
     }
 
-    private function createRandomPerson(): Person
-    {
-        $name = $this->faker->name;
-        $currency = $this->faker->randomElement(Wallet::AVAILABLE_CURRENCY);
-        return new Person($name, $currency);
-    }
-
     public function testGetName(): void
     {
         $name = $this->faker->name;
@@ -39,6 +32,13 @@ class PersonTest extends TestCase
         $newName = $this->faker->name;
         $person->setName($newName);
         $this->assertEquals($newName, $person->getName());
+    }
+
+    private function createRandomPerson(): Person
+    {
+        $name = $this->faker->name;
+        $currency = $this->faker->randomElement(Wallet::AVAILABLE_CURRENCY);
+        return new Person($name, $currency);
     }
 
     public function testGetWallet(): void
@@ -111,7 +111,6 @@ class PersonTest extends TestCase
         $this->assertEquals($initialBalance - $partPerPerson, $person1->getWallet()->getBalance());
 
         $this->assertEquals($partPerPerson, $person2->getWallet()->getBalance());
-
     }
 
     public function testBuyProduct(): void
